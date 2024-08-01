@@ -1,6 +1,6 @@
 ﻿namespace Catalog.API.Products.CreateProduct
 {
-    public record CreateProductCommand(string Name, List<string> category, string Description, string ImageFile, decimal Price)
+    public record CreateProductCommand(string Name, List<string> Category, string Description, string ImageFile, decimal Price)
         : ICommand<CreateProductResult>;
     public record CreateProductResult(Guid Id);
     internal class CreateProductHandler(IDocumentSession session)
@@ -14,7 +14,7 @@
             var product = new Product
             {
                 Name = command.Name,
-                Category = command.category,
+                Category = command.Category,
                 Description = command.Description,
                 ImageFile = command.ImageFile,
                 Price = command.Price

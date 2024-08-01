@@ -12,3 +12,12 @@ services:
         - "5432:5432"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data/
+  
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@cloud.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    restart: always
+    ports:
+      - "8080:80"
