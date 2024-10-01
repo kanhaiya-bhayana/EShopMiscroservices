@@ -10,13 +10,13 @@ public class DeleteBasketCommandValidator : AbstractValidator<DeleteBasketComman
         RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is required");
     }
 }
-public class DeleteBasketCommandHandler 
+public class DeleteBasketCommandHandler(IBasketRepository _repository) 
     : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
 {
     public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken token)
     {
-        // TODO: delete basket from databse and cache
         // TODO: session.Delete<Product>(command.Id);
+        await _repository.DeleteBasketAsync(command.UserName, token);
 
         return new DeleteBasketResult(true);
     }
